@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="header">
+        用户名<input type="text" class="username">
+        密码<input type="text" class="pass">
+        <button>注册</button>
+    </div>
+</body>
+<script src="./jquery.js"></script>
+<script>
+    $("button").click(function(){
+        $.ajax({
+            type:"get",
+            url:"http://localhost:6060/register",
+            data:{
+                username:$(".username").val(),
+                password:$(".pass").val()
+            },
+            success(res){
+                console.log(res);
+                if(res=="注册成功"){
+                    window.location.href="./login.html"
+                }if(res.status==false){
+                    alert(res.msg)
+                }
+            }
+        })
+    })
+</script>
+</html>
